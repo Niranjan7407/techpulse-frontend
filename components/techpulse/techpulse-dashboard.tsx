@@ -218,9 +218,18 @@ export default function TechPulseDashboard() {
         </header>
 
         <div className="tp-main-inner">
-          {isDemo && connectionStatus !== "loading" && (
-            <div className="tp-demo-banner"><Sparkles size={15} /><span>You're viewing preview stories. Connect your news API in <code>.env.local</code> to show live summaries.</span><button type="button" onClick={() => void loadNews()}><RefreshCw size={13} /> Retry</button></div>
-          )}
+          {isDemo && (
+  <div className="tp-demo-banner">
+    <Sparkles size={15} />
+    <span>
+      You're viewing preview stories. Connect your news API in{" "}
+      <code>.env.local</code> to show live summaries.
+    </span>
+    <button type="button" onClick={() => void loadNews()}>
+      <RefreshCw size={13} /> Retry
+    </button>
+  </div>
+)}
 
           <HotSummary summary={hotSummary} loading={connectionStatus === "loading"} />
 
