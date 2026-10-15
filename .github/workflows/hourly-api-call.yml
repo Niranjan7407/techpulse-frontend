@@ -1,0 +1,20 @@
+name: Hourly API Call
+
+on:
+  schedule:
+    # Runs at the start of every hour (UTC)
+    - cron: '0 * * * *'
+  workflow_dispatch: # Allows you to manually trigger the workflow from the Actions tab
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Execute API Call
+        run: |
+          curl --request POST \
+            --url "https://techpulse-backend-eight.vercel.app/api/admin/ingestion/run" \
+            --header "Content-Type: application/json" \
+            --header "X-Admin-Key: ${{ secrets.API_ADMIN_KEY }}" \
+            --data '{"status": "active"}'
